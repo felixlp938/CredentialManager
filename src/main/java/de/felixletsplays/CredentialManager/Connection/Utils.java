@@ -8,7 +8,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -84,7 +83,12 @@ public class Utils {
      * @throws IOException 
      */
     public void deleteConnectionConfig(String id) throws IOException {
-        Files.deleteIfExists(getConnectionFileByID(id).toPath());
+        if (getConnectionFileByID(id).exists()) {
+            getConnectionFileByID(id).delete();
+            System.out.println("Deleted connection with id " + id);
+        } else {
+            System.out.println("This connection does not exists!");
+        }
     }
     
     /**
