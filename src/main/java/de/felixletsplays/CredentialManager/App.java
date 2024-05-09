@@ -1,8 +1,5 @@
 package de.felixletsplays.CredentialManager;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
@@ -28,9 +25,8 @@ public class App {
      * main method
      *
      * @param args args can be used to start a GUI (simply run with 'gui')
-     * @throws java.net.UnknownHostException If the hostname is not detected
      */
-    public static void main(String[] args) throws UnknownHostException {
+    public static void main(String[] args) {
         if (args.length != 0 && args[0].equalsIgnoreCase("gui")) {
             //run gui here
             JOptionPane.showMessageDialog(null, "Sadly, this is not implemented!", "Error", JOptionPane.ERROR_MESSAGE);
