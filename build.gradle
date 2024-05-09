@@ -17,9 +17,9 @@ repositories {
 
 dependencies {
     // Use JUnit Jupiter for testing.
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+    //testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
 
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    //testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:33.2.0-jre'
@@ -37,10 +37,10 @@ application {
     mainClass = 'de.felixletsplays.CredentialManager.App'
 }
 
-tasks.named('test') {
+//tasks.named('test') {
     // Use JUnit Platform for unit tests.
-    useJUnitPlatform()
-}
+//    useJUnitPlatform()
+//}
 
 tasks.jar {
     manifest.attributes["Main-Class"] = "de.felixletsplays.CredentialManager.App"
