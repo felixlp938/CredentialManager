@@ -10,6 +10,7 @@ import java.io.IOException;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 import java.util.Properties;
 
@@ -36,7 +37,7 @@ public class Utils {
     private File getConnectionFileByID(String id) {
         return Paths.get(CONFIGDIR.toString(), id).toFile();
     }
-
+    
     /**
      * Create and save a config file
      *
@@ -75,12 +76,12 @@ public class Utils {
 
         return c;
     }
-    
+
     /**
      * Delete a connection file
-     * 
+     *
      * @param id ID of the connection file
-     * @throws IOException 
+     * @throws IOException
      */
     public void deleteConnectionConfig(String id) throws IOException {
         if (getConnectionFileByID(id).exists()) {
@@ -90,16 +91,32 @@ public class Utils {
             System.out.println("This connection does not exists!");
         }
     }
-    
+
     /**
      * Update a connection file by deleting and recreating it
-     * 
+     *
      * @param c The connection as {@link Connection}
-     * @throws IOException 
+     * @throws IOException
      */
     public void updateConfigfile(Connection c) throws IOException {
         deleteConnectionConfig(c.getID());
         createConnectionConfig(c);
     }
 
+    /**
+     * Get all connection config file from the config directory
+     *
+     * @return all config files as an {@link ArrayList}
+     * @throws java.io.IOException
+     */
+    public ArrayList<Connection> listAllConnections() throws IOException {
+        ArrayList<Connection> all = new ArrayList<>();
+        
+        for (File f : CONFIGDIR.toFile().listFiles()) {
+            //We can do this because the filename is the same as the id
+            all.add(readConnectionConfig(f.getName()));
+        }
+        
+        return all;
+    }
 }
