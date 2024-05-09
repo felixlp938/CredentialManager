@@ -1,5 +1,7 @@
 package de.felixletsplays.CredentialManager;
 
+import de.felixletsplays.CredentialManager.Connection.Utils;
+
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
@@ -27,6 +29,11 @@ public class App {
      * @param args args can be used to start a GUI (simply run with 'gui')
      */
     public static void main(String[] args) {
+        //check if config dir exists
+        if (!Utils.CONFIGDIR.toFile().exists()) {
+            Utils.CONFIGDIR.toFile().mkdir();
+        }
+
         if (args.length != 0 && args[0].equalsIgnoreCase("gui")) {
             //run gui here
             JOptionPane.showMessageDialog(null, "Sadly, this is not implemented!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -50,13 +57,20 @@ public class App {
                 command = input.nextLine();
 
                 if (command != null) {
-                    switch (command.toLowerCase()) {
-                        case "?" ->
-                            cmd.displayHelp();
-                        case "^" ->
-                            run = false;
-                        case "new" ->
-                            
+                    if (command.startsWith("?")) {
+                        cmd.displayHelp();
+                    } else if (command.startsWith("^")) {
+                        run = false;
+                    } else if (command.startsWith("new")) {
+                        cmd.create(input, command);
+                    } else if (command.startsWith("del")) {
+                        cmd.delete(input, command);
+                    } else if (command.startsWith("mod")) {
+                        cmd.modify(input, command);
+                    } else if (command.startsWith("view")) {
+                        cmd.view(input, command);
+                    } else if (command.startsWith("list")) {
+                        cmd.list(input, command);
                     }
                 }
             }
