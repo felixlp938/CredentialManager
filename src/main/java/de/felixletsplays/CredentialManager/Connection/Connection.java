@@ -1,13 +1,6 @@
 package de.felixletsplays.CredentialManager.Connection;
 
-import de.felixletsplays.CredentialManager.App;
-import java.io.BufferedReader;
-
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.util.Scanner;
 
 /**
  * Class to create a connection object
@@ -25,6 +18,11 @@ public class Connection {
 
     private String args;
 
+    /**
+     * Create a connection
+     * 
+     * @param builder {@link ConnectionBuilder}
+     */
     public Connection(ConnectionBuilder builder) {
         this.ID = builder.getID();
         this.remotehost = builder.getRemotehost();

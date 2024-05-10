@@ -24,7 +24,7 @@ public class App {
     public static boolean run = true;
 
     /**
-     *
+     * Instance of commands
      */
     public static Commands cmd = new Commands();
 
