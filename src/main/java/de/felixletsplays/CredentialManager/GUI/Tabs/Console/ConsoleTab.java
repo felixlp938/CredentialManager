@@ -1,8 +1,8 @@
 package de.felixletsplays.CredentialManager.GUI.Tabs.Console;
 
+import de.felixletsplays.CredentialManager.GUI.MainWindow;
 import de.felixletsplays.CredentialManager.GUI.Tabs.Console.Events.SubmitButtonPressEvent;
 import de.felixletsplays.CredentialManager.GUI.Utils.TextAreaOutputStream;
-import java.awt.Font;
 
 import java.io.PrintStream;
 
@@ -23,17 +23,15 @@ public class ConsoleTab extends JPanel {
 
     private JTextArea text;
 
-    private JTextField command;
+    public JTextField command;
     private JButton submit;
 
-    public PrintStream ps;
-
-    public ConsoleTab() {
+    public ConsoleTab(MainWindow w) {
         text = new JTextArea();
         text.setEditable(false);
 
-        ps = new PrintStream(new TextAreaOutputStream(text));
-        System.setOut(ps);
+        w.ps = new PrintStream(new TextAreaOutputStream(text));
+        System.setOut(w.ps);
         System.out.println("- - -\tWelcome\t- - -");
         
         command = new JTextField();

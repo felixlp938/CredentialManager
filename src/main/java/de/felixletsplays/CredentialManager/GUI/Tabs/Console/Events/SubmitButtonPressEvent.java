@@ -14,7 +14,7 @@ import javax.swing.JTextField;
  * @author Felix
  */
 public class SubmitButtonPressEvent implements ActionListener {
-
+    
     private JTextField commandText;
 
     public SubmitButtonPressEvent(JTextField command) {

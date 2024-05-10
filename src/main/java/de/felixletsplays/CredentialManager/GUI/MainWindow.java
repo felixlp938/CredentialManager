@@ -1,9 +1,12 @@
 package de.felixletsplays.CredentialManager.GUI;
 
 import de.felixletsplays.CredentialManager.GUI.Events.TabsChangeEvent;
+import de.felixletsplays.CredentialManager.GUI.Tabs.Connections.ConnectionsTab;
 import de.felixletsplays.CredentialManager.GUI.Tabs.Console.ConsoleTab;
 
 import java.awt.Dimension;
+import java.io.InputStream;
+import java.io.PrintStream;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -20,10 +23,13 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class MainWindow extends JFrame {
 
+    public final InputStream backupOfSysin = System.in;
+    public PrintStream ps;
+    
     public JTabbedPane tabs;
 
-    public ConsoleTab console = new ConsoleTab();
-    public JPanel allConnections;
+    public ConsoleTab console = new ConsoleTab(this);
+    public ConnectionsTab allConnections = new ConnectionsTab(this);
     public JPanel about;
 
     public MainWindow() {
@@ -40,10 +46,6 @@ public class MainWindow extends JFrame {
         this.tabs = new JTabbedPane(JTabbedPane.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
         tabs.addChangeListener(new TabsChangeEvent(this));
         
-        this.allConnections = new JPanel();
-        allConnections.setLayout(new BoxLayout(allConnections, BoxLayout.Y_AXIS));
-        allConnections.setName("connections");
-
         this.about = new JPanel();
         about.setLayout(new BoxLayout(about, BoxLayout.Y_AXIS));
         about.setName("about");
@@ -52,7 +54,7 @@ public class MainWindow extends JFrame {
         tabs.addTab("Console", console);
         tabs.addTab("About", about);
         
-        console.setEnabled(false);
+        console.setEnabled(false); //This does not work??? FIXME console not disabled!
 
         this.add(tabs);
 
@@ -77,6 +79,7 @@ public class MainWindow extends JFrame {
      * Rebuild the all connections tab
      */
     public void rebuildConnectionsTab() {
+        allConnections.flush();
     }
 
     /**
