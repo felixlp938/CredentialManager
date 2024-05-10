@@ -2,6 +2,7 @@ package de.felixletsplays.CredentialManager;
 
 import de.felixletsplays.CredentialManager.Connection.Connection;
 import de.felixletsplays.CredentialManager.Connection.Utils;
+import de.felixletsplays.CredentialManager.GUI.MainWindow;
 
 import java.io.IOException;
 
@@ -29,6 +30,11 @@ public class App {
     public static Commands cmd = new Commands();
 
     /**
+     * Instance of the {@link MainWindow}
+     */
+    public static MainWindow gui;
+    
+    /**
      * main method
      *
      * @param args args can be used to start a GUI (simply run with 'gui')
@@ -41,7 +47,7 @@ public class App {
 
         if (args.length != 0 && args[0].equalsIgnoreCase("gui")) {
             //run gui here
-            JOptionPane.showMessageDialog(null, "Sadly, this is not implemented!", "Error", JOptionPane.ERROR_MESSAGE);
+            gui = new MainWindow();
         } else {
             //run cli here
             System.out.println("""
