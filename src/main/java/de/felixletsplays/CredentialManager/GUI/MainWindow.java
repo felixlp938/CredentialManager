@@ -2,7 +2,6 @@ package de.felixletsplays.CredentialManager.GUI;
 
 import de.felixletsplays.CredentialManager.GUI.Events.TabsChangeEvent;
 import de.felixletsplays.CredentialManager.GUI.Tabs.Connections.ConnectionsTab;
-import de.felixletsplays.CredentialManager.GUI.Tabs.Console.ConsoleTab;
 
 import java.awt.Dimension;
 import java.io.InputStream;
@@ -28,7 +27,6 @@ public class MainWindow extends JFrame {
     
     public JTabbedPane tabs;
 
-    public ConsoleTab console = new ConsoleTab(this);
     public ConnectionsTab allConnections = new ConnectionsTab(this);
     public JPanel about;
 
@@ -51,10 +49,8 @@ public class MainWindow extends JFrame {
         about.setName("about");
         
         tabs.addTab("All connections", allConnections);
-        tabs.addTab("Console", console);
         tabs.addTab("About", about);
         
-        console.setEnabled(false); //This does not work??? FIXME console not disabled!
 
         this.add(tabs);
 
@@ -66,13 +62,6 @@ public class MainWindow extends JFrame {
 
         this.setType(Type.UTILITY);
         this.setVisible(true);
-    }
-    
-    /**
-     * Rebuild the console tab
-     */
-    public void rebuildConsoleTab() {
-        console.flush();
     }
     
     /**

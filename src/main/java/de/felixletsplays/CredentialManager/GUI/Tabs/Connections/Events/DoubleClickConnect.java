@@ -40,10 +40,7 @@ public class DoubleClickConnect implements MouseListener {
                 String id = table.getValueAt(row, 0).toString();
                 
                 Connection c = new Utils().readConnectionConfig(id);
-                c.connect();
-                
-                window.console.setVisible(true);
-                
+                c.connect();                
             } catch (IOException | InterruptedException ex) {
                 Logger.getLogger(DoubleClickConnect.class.getName()).log(Level.SEVERE, null, ex);
             }

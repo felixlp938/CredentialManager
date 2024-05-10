@@ -28,21 +28,13 @@ public class TabsChangeEvent implements ChangeListener {
         if (choosen.getComponentAt(choosen.getSelectedIndex()).getName() == null) {
             return;
         }
-        
-        if (choosen.getComponentAt(choosen.getSelectedIndex()).getName().equalsIgnoreCase("console")){
-            mainwindow.allConnections.removeAll();
-            mainwindow.about.removeAll();
-            mainwindow.rebuildConsoleTab();
-        }
-        
+              
         if (choosen.getComponentAt(choosen.getSelectedIndex()).getName().equalsIgnoreCase("connections")){
-            mainwindow.console.removeAll();
             mainwindow.about.removeAll();
             mainwindow.rebuildConnectionsTab();
         }
         
         if (choosen.getComponentAt(choosen.getSelectedIndex()).getName().equalsIgnoreCase("about")){
-            mainwindow.console.removeAll();
             mainwindow.allConnections.removeAll();
             mainwindow.rebuildAboutTab();
         }
