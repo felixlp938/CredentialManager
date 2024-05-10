@@ -1,8 +1,13 @@
 package de.felixletsplays.CredentialManager;
 
+import de.felixletsplays.CredentialManager.Connection.Connection;
 import de.felixletsplays.CredentialManager.Connection.Utils;
 
+import java.io.IOException;
+
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
@@ -56,7 +61,7 @@ public class App {
                 System.out.print("> ");
                 command = input.nextLine();
 
-                if (command != null) {
+                if (command != null || !command.isBlank()) {
                     if (command.startsWith("?")) {
                         cmd.displayHelp();
                     } else if (command.startsWith("^")) {
@@ -71,6 +76,14 @@ public class App {
                         cmd.view(input, command);
                     } else if (command.startsWith("list")) {
                         cmd.list(input, command);
+                    } else {
+                        try {
+                            Connection connectTo = new Utils().readConnectionConfig(command);
+                            connectTo.connect();
+                        } catch (IOException | InterruptedException ex) {
+                            System.out.println("This connection does not exists!");
+                            System.err.println(ex.getMessage());
+                        }
                     }
                 }
             }

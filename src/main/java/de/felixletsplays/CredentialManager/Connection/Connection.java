@@ -1,23 +1,30 @@
 package de.felixletsplays.CredentialManager.Connection;
 
+import de.felixletsplays.CredentialManager.App;
+import java.io.BufferedReader;
+
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.util.Scanner;
 
 /**
  * Class to create a connection object
- * 
+ *
  * @author Felix
  */
 public class Connection {
-    
+
     private String ID;
-    
+
     private String remotehost;
     private String user;
-    
+
     private String keyPath;
-    
+
     private String args;
-    
+
     public Connection(ConnectionBuilder builder) {
         this.ID = builder.getID();
         this.remotehost = builder.getRemotehost();
@@ -65,22 +72,26 @@ public class Connection {
     public void setArgs(String args) {
         this.args = args;
     }
-    
+
     /**
      * Create a new process and connect with SSH
+     *
      * @throws java.io.IOException
+     * @throws java.lang.InterruptedException
      */
-    public void connect() throws IOException {
+    public void connect() throws IOException, InterruptedException {
         String keyfilearg = "";
-        if (!keyfilearg.isEmpty() || !keyfilearg.isBlank()) {
-            keyfilearg = "-i " + keyPath;
+        if (!getKeyPath().isEmpty() || !getKeyPath().isBlank()) {
+            keyfilearg = "-i" + keyPath.trim();
         }
-        
+
         ProcessBuilder builder = new ProcessBuilder("ssh", this.user + "@" + this.remotehost, keyfilearg, args);
+        builder.redirectError(ProcessBuilder.Redirect.INHERIT);
         builder.redirectInput(ProcessBuilder.Redirect.INHERIT);
         builder.redirectOutput(ProcessBuilder.Redirect.INHERIT);
-        builder.redirectError(ProcessBuilder.Redirect.INHERIT);
-        
+        builder.inheritIO();
+
         Process sshProcess = builder.start();
+        sshProcess.waitFor();
     }
 }
