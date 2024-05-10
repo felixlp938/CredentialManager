@@ -69,12 +69,21 @@ public class MainWindow extends JFrame {
         this.setVisible(true);
     }
     
+    /**
+     * Rebuild the console tab
+     */
     public void rebuildConsoleTab() {
     }
     
+    /**
+     * Rebuild the all connections tab
+     */
     public void rebuildConnectionsTab() {
     }
 
+    /**
+     * Rebuild the about tab
+     */
     public void rebuildAboutTab() {
     }
 
