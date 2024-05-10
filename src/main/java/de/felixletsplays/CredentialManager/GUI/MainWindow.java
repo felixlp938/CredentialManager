@@ -1,15 +1,17 @@
 package de.felixletsplays.CredentialManager.GUI;
 
 import de.felixletsplays.CredentialManager.GUI.Events.TabsChangeEvent;
+import de.felixletsplays.CredentialManager.GUI.Tabs.About.AboutTab;
 import de.felixletsplays.CredentialManager.GUI.Tabs.Connections.ConnectionsTab;
 
 import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
+
 import java.io.InputStream;
 import java.io.PrintStream;
 
-import javax.swing.BoxLayout;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
@@ -28,7 +30,7 @@ public class MainWindow extends JFrame {
     public JTabbedPane tabs;
 
     public ConnectionsTab allConnections = new ConnectionsTab(this);
-    public JPanel about;
+    public AboutTab about = new AboutTab();
 
     public MainWindow() {
         try {
@@ -44,14 +46,15 @@ public class MainWindow extends JFrame {
         this.tabs = new JTabbedPane(JTabbedPane.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
         tabs.addChangeListener(new TabsChangeEvent(this));
         
-        this.about = new JPanel();
-        about.setLayout(new BoxLayout(about, BoxLayout.Y_AXIS));
-        about.setName("about");
-        
         tabs.addTab("All connections", allConnections);
+        tabs.addTab("View", null);
+        tabs.addTab("Edit", null);
+        tabs.addTab("Create", null);
         tabs.addTab("About", about);
-        
 
+        //Icon
+        //this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon.png")));
+        
         this.add(tabs);
 
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -75,6 +78,7 @@ public class MainWindow extends JFrame {
      * Rebuild the about tab
      */
     public void rebuildAboutTab() {
+        about.flush();
     }
 
 }
