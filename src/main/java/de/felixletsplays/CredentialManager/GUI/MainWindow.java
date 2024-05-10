@@ -1,6 +1,7 @@
 package de.felixletsplays.CredentialManager.GUI;
 
 import de.felixletsplays.CredentialManager.GUI.Events.TabsChangeEvent;
+import de.felixletsplays.CredentialManager.GUI.Tabs.Console.ConsoleTab;
 
 import java.awt.Dimension;
 
@@ -21,7 +22,7 @@ public class MainWindow extends JFrame {
 
     public JTabbedPane tabs;
 
-    public JPanel console;
+    public ConsoleTab console = new ConsoleTab();
     public JPanel allConnections;
     public JPanel about;
 
@@ -38,10 +39,6 @@ public class MainWindow extends JFrame {
 
         this.tabs = new JTabbedPane(JTabbedPane.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
         tabs.addChangeListener(new TabsChangeEvent(this));
-        
-        this.console = new JPanel();
-        console.setLayout(new BoxLayout(console, BoxLayout.Y_AXIS));
-        console.setName("console");
         
         this.allConnections = new JPanel();
         allConnections.setLayout(new BoxLayout(allConnections, BoxLayout.Y_AXIS));
@@ -73,6 +70,7 @@ public class MainWindow extends JFrame {
      * Rebuild the console tab
      */
     public void rebuildConsoleTab() {
+        console.flush();
     }
     
     /**
