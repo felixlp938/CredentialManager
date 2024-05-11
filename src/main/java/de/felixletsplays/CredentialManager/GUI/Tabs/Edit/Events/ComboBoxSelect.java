@@ -15,17 +15,17 @@ import javax.swing.JComboBox;
 
 /**
  * Combo box select event
- * 
+ *
  * @author Felix
  */
 public class ComboBoxSelect implements ActionListener {
 
     private EditTab tab;
-    
+
     public ComboBoxSelect(EditTab t) {
         this.tab = t;
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
@@ -33,10 +33,12 @@ public class ComboBoxSelect implements ActionListener {
             String selected = cb.getItemAt(cb.getSelectedIndex());
             if (!selected.equalsIgnoreCase("Select an ID")) {
                 tab.setConnection(new Utils().readConnectionConfig(selected));
+                tab.update.setEnabled(true);
+                tab.delete.setEnabled(true);
             }
         } catch (IOException ex) {
             Logger.getLogger(ComboBoxSelect.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
 }
