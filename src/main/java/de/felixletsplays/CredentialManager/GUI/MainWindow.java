@@ -4,6 +4,7 @@ import de.felixletsplays.CredentialManager.GUI.Events.TabsChangeEvent;
 import de.felixletsplays.CredentialManager.GUI.Tabs.About.AboutTab;
 import de.felixletsplays.CredentialManager.GUI.Tabs.Connections.ConnectionsTab;
 import de.felixletsplays.CredentialManager.GUI.Tabs.Create.CreateTab;
+import de.felixletsplays.CredentialManager.GUI.Tabs.View.ViewTab;
 
 import java.awt.Dimension;
 
@@ -32,6 +33,7 @@ public class MainWindow extends JFrame {
     public AboutTab about = new AboutTab();
     
     public CreateTab create = new CreateTab();
+    public ViewTab view = new ViewTab();
 
     public MainWindow() {
         try {
@@ -48,7 +50,7 @@ public class MainWindow extends JFrame {
         tabs.addChangeListener(new TabsChangeEvent(this));
         
         tabs.addTab("All connections", allConnections);
-        tabs.addTab("View", null);
+        tabs.addTab("View", view);
         tabs.addTab("Edit", null);
         tabs.addTab("Create", create);
         tabs.addTab("About", about);
@@ -87,6 +89,13 @@ public class MainWindow extends JFrame {
      */
     public void rebuildCreateTab() {
         create.flush();
+    }
+    
+    /**
+     * Rebuild the view tab
+     */
+    public void rebuildViewTab() {
+        view.flush();
     }
 
 }
