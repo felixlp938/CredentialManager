@@ -7,7 +7,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 /**
- * This class is used to handle the event of clicking the "console" tab. Because
+ * This class is used to handle the event of clicking tabs. Because
  * of performance, we rebuild the whole ui
  *
  * @author Felix

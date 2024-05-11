@@ -5,8 +5,6 @@ import de.felixletsplays.CredentialManager.GUI.Tabs.About.AboutTab;
 import de.felixletsplays.CredentialManager.GUI.Tabs.Connections.ConnectionsTab;
 
 import java.awt.Dimension;
-import java.awt.Image;
-import java.awt.Toolkit;
 
 import java.io.InputStream;
 import java.io.PrintStream;
