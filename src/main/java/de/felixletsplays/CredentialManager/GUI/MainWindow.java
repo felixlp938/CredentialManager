@@ -3,6 +3,7 @@ package de.felixletsplays.CredentialManager.GUI;
 import de.felixletsplays.CredentialManager.GUI.Events.TabsChangeEvent;
 import de.felixletsplays.CredentialManager.GUI.Tabs.About.AboutTab;
 import de.felixletsplays.CredentialManager.GUI.Tabs.Connections.ConnectionsTab;
+import de.felixletsplays.CredentialManager.GUI.Tabs.Create.CreateTab;
 
 import java.awt.Dimension;
 
@@ -29,6 +30,8 @@ public class MainWindow extends JFrame {
 
     public ConnectionsTab allConnections = new ConnectionsTab(this);
     public AboutTab about = new AboutTab();
+    
+    public CreateTab create = new CreateTab();
 
     public MainWindow() {
         try {
@@ -47,7 +50,7 @@ public class MainWindow extends JFrame {
         tabs.addTab("All connections", allConnections);
         tabs.addTab("View", null);
         tabs.addTab("Edit", null);
-        tabs.addTab("Create", null);
+        tabs.addTab("Create", create);
         tabs.addTab("About", about);
 
         //Icon
@@ -77,6 +80,13 @@ public class MainWindow extends JFrame {
      */
     public void rebuildAboutTab() {
         about.flush();
+    }
+    
+    /**
+     * Rebuild the create tab
+     */
+    public void rebuildCreateTab() {
+        create.flush();
     }
 
 }

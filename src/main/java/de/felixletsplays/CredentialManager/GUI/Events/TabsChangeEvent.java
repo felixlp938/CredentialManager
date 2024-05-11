@@ -7,8 +7,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 /**
- * This class is used to handle the event of clicking tabs. Because
- * of performance, we rebuild the whole ui
+ * This class is used to handle the event of clicking tabs. Because of
+ * performance, we rebuild the whole ui
  *
  * @author Felix
  * @since CM-GUI
@@ -28,14 +28,22 @@ public class TabsChangeEvent implements ChangeListener {
         if (choosen.getComponentAt(choosen.getSelectedIndex()).getName() == null) {
             return;
         }
-              
-        if (choosen.getComponentAt(choosen.getSelectedIndex()).getName().equalsIgnoreCase("connections")){
+
+        if (choosen.getComponentAt(choosen.getSelectedIndex()).getName().equalsIgnoreCase("connections")) {
             mainwindow.about.removeAll();
+            mainwindow.create.removeAll();
             mainwindow.rebuildConnectionsTab();
         }
-        
-        if (choosen.getComponentAt(choosen.getSelectedIndex()).getName().equalsIgnoreCase("about")){
+
+        if (choosen.getComponentAt(choosen.getSelectedIndex()).getName().equalsIgnoreCase("create")) {
+            mainwindow.about.removeAll();
             mainwindow.allConnections.removeAll();
+            mainwindow.rebuildCreateTab();
+        }
+
+        if (choosen.getComponentAt(choosen.getSelectedIndex()).getName().equalsIgnoreCase("about")) {
+            mainwindow.allConnections.removeAll();
+            mainwindow.create.removeAll();
             mainwindow.rebuildAboutTab();
         }
     }
