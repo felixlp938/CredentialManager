@@ -11,8 +11,6 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.swing.JComboBox;
-
 /**
  * Combo box select event
  *
@@ -29,9 +27,8 @@ public class ComboBoxSelect implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            JComboBox<String> cb = (JComboBox) e.getSource();
-            String selected = cb.getItemAt(cb.getSelectedIndex());
-            if (!selected.equalsIgnoreCase("Select an ID")) {
+            String selected = tab.idSelect.getItemAt(tab.idSelect.getSelectedIndex());
+            if (!selected.equalsIgnoreCase("Select an ID") && selected != null) {
                 tab.setConnection(new Utils().readConnectionConfig(selected));
                 tab.update.setEnabled(true);
                 tab.delete.setEnabled(true);

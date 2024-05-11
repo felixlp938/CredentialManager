@@ -39,53 +39,53 @@ public class EditTab extends JPanel {
     public JButton update;
 
     public EditTab() {
+        this.setName("edit");
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        delete = new JButton("Delete connection");
+        delete.addActionListener(new DeleteClickEvent(this));
+        delete.setEnabled(false);
+        update = new JButton("Update connection");
+        update.addActionListener(new UpdateClickEvent(this));
+        update.setEnabled(false);
+        id = new JTextField("ID");
+        user = new JTextField("Username");
+        remote = new JTextField("Remotehost");
+        key = new JTextField("Path to keyfile");
+        args = new JTextField("Args");
+    }
+
+    public void flush() {
         try {
-            this.setName("edit");
-            this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
-            delete = new JButton("Delete connection");
-            delete.addActionListener(new DeleteClickEvent(this));
-            delete.setEnabled(false);
-
-            update = new JButton("Update connection");
-            update.addActionListener(new UpdateClickEvent(this));
-            update.setEnabled(false);
-
-            id = new JTextField("ID");
-            user = new JTextField("Username");
-            remote = new JTextField("Remotehost");
-            key = new JTextField("Path to keyfile");
-            args = new JTextField("Args");
+            this.removeAll();
 
             idSelect = new JComboBox<>();
             idSelect.addActionListener(new ComboBoxSelect(this));
+
+            idSelect.removeAllItems();
             idSelect.addItem("Select an ID");
             idSelect.setSelectedIndex(0);
 
             for (Connection c : new Utils().listAllConnections()) {
                 idSelect.addItem(c.getID());
             }
+
+            this.add(idSelect);
+            this.add(new JLabel("Connection ID:"));
+            this.add(id);
+            this.add(new JLabel("Connection Username:"));
+            this.add(user);
+            this.add(new JLabel("Connection Remotehost:"));
+            this.add(remote);
+            this.add(new JLabel("Connection Keyfile Path (empty: password auth will be used):"));
+            this.add(key);
+            this.add(new JLabel("Connection Args (optional):"));
+            this.add(args);
+            this.add(new JSeparator());
+            this.add(update);
+            this.add(delete);
         } catch (IOException ex) {
             Logger.getLogger(EditTab.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    public void flush() {
-        this.removeAll();
-        this.add(idSelect);
-        this.add(new JLabel("Connection ID:"));
-        this.add(id);
-        this.add(new JLabel("Connection Username:"));
-        this.add(user);
-        this.add(new JLabel("Connection Remotehost:"));
-        this.add(remote);
-        this.add(new JLabel("Connection Keyfile Path (empty: password auth will be used):"));
-        this.add(key);
-        this.add(new JLabel("Connection Args (optional):"));
-        this.add(args);
-        this.add(new JSeparator());
-        this.add(update);
-        this.add(delete);
     }
 
     /**

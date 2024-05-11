@@ -31,39 +31,40 @@ public class ViewTab extends JPanel {
     private JLabel args;
 
     public ViewTab() {
-        try {
-            this.setName("view");
-            this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setName("view");
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        id = new JLabel("ID: -/-");
+        user = new JLabel("User: -/-");
+        remote = new JLabel("Remotehost: -/-");
+        key = new JLabel("Keyfile: -/-");
+        args = new JLabel("Args: -/-");
+    }
 
-            id = new JLabel("ID: -/-");
-            user = new JLabel("User: -/-");
-            remote = new JLabel("Remotehost: -/-");
-            key = new JLabel("Keyfile: -/-");
-            args = new JLabel("Args: -/-");
+    public void flush() {
+        try {
+            this.removeAll();
 
             idSelect = new JComboBox<>();
             idSelect.addActionListener(new ComboBoxSelect(this));
 
+            idSelect.removeAllItems();
             idSelect.addItem("Select an ID");
-            //Add ID's to the combo box
+            idSelect.setSelectedIndex(0);
+
             for (Connection c : new Utils().listAllConnections()) {
                 idSelect.addItem(c.getID());
             }
-            idSelect.setSelectedIndex(0);
+
+            this.add(idSelect);
+            this.add(id);
+            this.add(user);
+            this.add(remote);
+            this.add(key);
+            this.add(args);
+            this.add(new JSeparator());
         } catch (IOException ex) {
             Logger.getLogger(ViewTab.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    public void flush() {
-        this.removeAll();
-        this.add(idSelect);
-        this.add(id);
-        this.add(user);
-        this.add(remote);
-        this.add(key);
-        this.add(args);
-        this.add(new JSeparator());
     }
 
     public void setView(Connection c) {
