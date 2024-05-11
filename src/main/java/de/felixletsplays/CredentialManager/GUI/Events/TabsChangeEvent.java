@@ -33,6 +33,7 @@ public class TabsChangeEvent implements ChangeListener {
             mainwindow.about.removeAll();
             mainwindow.create.removeAll();
             mainwindow.view.removeAll();
+            mainwindow.edit.removeAll();
             mainwindow.rebuildConnectionsTab();
         }
 
@@ -40,20 +41,31 @@ public class TabsChangeEvent implements ChangeListener {
             mainwindow.about.removeAll();
             mainwindow.allConnections.removeAll();
             mainwindow.view.removeAll();
+            mainwindow.edit.removeAll();
             mainwindow.rebuildCreateTab();
         }
-        
+
         if (choosen.getComponentAt(choosen.getSelectedIndex()).getName().equalsIgnoreCase("view")) {
             mainwindow.about.removeAll();
             mainwindow.allConnections.removeAll();
             mainwindow.create.removeAll();
+            mainwindow.edit.removeAll();
             mainwindow.rebuildViewTab();
+        }
+
+        if (choosen.getComponentAt(choosen.getSelectedIndex()).getName().equalsIgnoreCase("edit")) {
+            mainwindow.about.removeAll();
+            mainwindow.allConnections.removeAll();
+            mainwindow.create.removeAll();
+            mainwindow.view.removeAll();
+            mainwindow.rebuildEditTab();
         }
 
         if (choosen.getComponentAt(choosen.getSelectedIndex()).getName().equalsIgnoreCase("about")) {
             mainwindow.allConnections.removeAll();
             mainwindow.create.removeAll();
             mainwindow.view.removeAll();
+            mainwindow.edit.removeAll();
             mainwindow.rebuildAboutTab();
         }
     }
