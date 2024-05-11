@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE actions SYSTEM "action-mapping.dtd">
+<actions>
+    <action name="build" repeatable="true">
+        <args>build</args>
+    </action>
+    <action name="debug" repeatable="true">
+        <args>${javaExec.workingDir} ${javaExec.environment} run --debug-jvm  ${javaExec.jvmArgs} ${javaExec.args} --args='gui'</args>
+    </action>
+    <action name="run" repeatable="true">
+        <args>${javaExec.workingDir} ${javaExec.environment} run ${javaExec.jvmArgs} ${javaExec.args} --args='gui'</args>
+    </action>
+</actions>
