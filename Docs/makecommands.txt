@@ -1,0 +1,30 @@
+Makefile
+========
+
+	'>' is your command-line
+
+> make
+	A clean build of the project
+
+> make INSTALL
+	Installs the builded target jar to ~/.cm/CredMgr.jar
+
+> make UNINSTALL
+	Removes the JAR-file located ~/.cm/CredMgr.jar
+	This make command is safe-to-use. It ONLY deletes
+		the JAR-file.
+
+> make BASH
+	Adds an alias to the .bashrc to run CredMgr.jar with alias 'cm'
+
+> make FISH
+	Adds a function to the default FISH function path
+
+> make DOCS
+	Cat's this txt
+
+> make CLEAN
+	Clean the build dir
+
+> make BUILD
+	Compiles and builds JAR-file
