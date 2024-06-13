@@ -37,7 +37,7 @@ public class Utils {
     private File getConnectionFileByID(String id) {
         return Paths.get(CONFIGDIR.toString(), id).toFile();
     }
-    
+
     /**
      * Create and save a config file
      *
@@ -111,12 +111,19 @@ public class Utils {
      */
     public ArrayList<Connection> listAllConnections() throws IOException {
         ArrayList<Connection> all = new ArrayList<>();
-        
+
         for (File f : CONFIGDIR.toFile().listFiles()) {
             //We can do this because the filename is the same as the id
-            all.add(readConnectionConfig(f.getName()));
+            /*
+            BUG: Can iterate over other files; But it throws an EXCEPTION if the encoding is wrong!
+            FIX: check if file is not ending with .jar
+             */
+
+            if (!f.getName().endsWith(".jar")) {
+                all.add(readConnectionConfig(f.getName()));
+            }
         }
-        
+
         return all;
     }
 }
